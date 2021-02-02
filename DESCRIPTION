@@ -1,0 +1,17 @@
+Package: taxaEstimator
+Type: Package
+Title: Taxa estimator
+Version: 1.0
+Authors@R: person("Moritz", "Kohls", email = "moritz.kohls@tiho-hannover.de",
+                  role = c("aut", "cre"))
+Maintainer: Moritz Kohls <moritz.kohls@tiho-hannover.de>
+Description: A tool for estimation of viral taxa distributions
+License: MIT
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Suggests:
+    knitr,
+    rmarkdown
+Imports: Biostrings, keras, stringi, ggplot2, gridExtra, ggpubr, ggplotify
+VignetteBuilder: knitr

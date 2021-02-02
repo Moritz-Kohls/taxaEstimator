@@ -1,0 +1,35 @@
+---
+title: "Taxa Estimator"
+output: rmarkdown::html_vignette
+vignette: >
+  \VignetteIndexEntry{taxaEstimator}
+  \VignetteEngine{knitr::rmarkdown}
+  \VignetteEncoding{UTF-8}
+---
+
+Estimating the taxonomic composition of viral sequences in a biological sample processed by next-generation sequencing is an important step for comparative metagenomics. For that purpose, sequencing reads are usually classified by mapping them against a database of known viral reference genomes. This fails, however, to classify reads from novel viruses and quasispecies whose reference sequences are not yet available in public databases.
+
+In order to circumvent these problems, the feasibility and performance of an artificial neural network to classify sequencing reads to taxonomic orders is studied. For that purpose, taxonomy and genomic data from the NCBI database are used to sample artificial reads from viruses with known taxonomic attribution. From these reads, input features are derived by a feature selection method. Based on the computed training data, an artificial neural network is fitted and applied to classify single viral read sequences to different taxa. While we observe many misclassifications with this neural network, we employ additionally simulated test samples with known taxonomic memberships to correct the estimation of taxa distributions in the final test sample. Therefore, new formulas are introduced to statistically estimate taxa frequencies.
+
+Prediction accuracy of the fitted models is evaluated on the simulated test data and classification results are summarised in a confusion matrix, from which sensitivity, specificity as well as predictive values are calculated. The prediction accuracy of the artificial neural network is considerably higher than for random classification and posterior (i.e. corrected) estimation of taxa frequencies is closer to the true distribution in the test data than simple classification or mapping results.
+
+The general principle of using additionally simulated test samples with known class memberships could also be helpful to correct class distributions obtained by other machine learning applications.
+
+## How to use this package
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(taxaEstimator)
+```
+
+1. Function `class_specific_PPVs`. Step 1 of the taxa classification and estimation procedure. This function creates artificial reads based on NCBI viral reference genomes FASTA file, computes input features and artificial neural network (ANN) model and finally stores the trained model and classification results in R-intern variables.
+
+2. Function `ANN_new_sample`. Step 2 of the taxa classification and estimation procedure. This function loads an ANN model which was trained on artificial data, computes input features of the new, adjusted sample file (FASTQ or SAM) and stores the predicted classes of its read sequences.
+
+3. Function `estimation_taxa_distribution`. Step 3 of the taxa classification and estimation procedure. This function loads the predicted classes of the ANN model which was trained on artificial data, computes prior as well as posterior taxa distribution estimations and saves a graphics result file containing the estimation of the predicted classes.
