@@ -20,4 +20,4 @@ After this, you can install packages from GitHub by using the R-function ```inst
 install_github("Moritz-Kohls/taxaEstimator")
 ```
 
-Type `vignette(package = "taxaEstimator")` to open the vignette or `help(package = "taxaEstimator")` to open the package's help page.
+Type `help(package = taxaEstimator)` to open the package's help page.
