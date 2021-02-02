@@ -8,6 +8,7 @@ The execution order of the functions of the estimation procedure is as follows:
 \item \code{\link{class_specific_PPVs}}
 \item \code{\link{ANN_new_sample}}
 \item \code{\link{estimation_taxa_distribution}}
+  }
 
 Step 1 of the taxa classification and estimation procedure.
 This function creates artificial reads based on NCBI viral reference genomes FASTA file,
